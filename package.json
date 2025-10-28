@@ -1,0 +1,31 @@
+{
+  "name": "math-discord-bot",
+  "version": "1.0.0",
+  "description": "A Discord bot for mathematical calculations with slash commands",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js",
+    "register": "node register-commands.js",
+    "register-guild": "cross-env GUILD_ID=1110161295929520149 node register-commands.js",
+    "register-global": "cross-env GUILD_ID= node register-commands.js",
+    "dev": "nodemon bot.js"
+  },
+  "dependencies": {
+    "discord.js": "^14.14.1",
+    "mathjs": "^11.9.1",
+    "dotenv": "^16.3.1",
+    "cross-env": "^7.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "math",
+    "calculator",
+    "slash-commands"
+  ],
+  "author": "Pg Network",
+  "license": "MIT"
+}
