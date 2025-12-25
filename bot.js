@@ -36,6 +36,11 @@ const { executeStats } = require('./commands/statistics.js');
 const { executeConvert } = require('./commands/convert.js');
 const { executeSolve } = require('./commands/solve.js');
 const { executeHelp } = require('./commands/help.js');
+const { executeArea } = require('./commands/area.js');
+const { executePerimeter } = require('./commands/perimeter.js');
+const { executeVolume } = require('./commands/volume.js');
+const { executeTrigonometry } = require('./commands/trigonometry.js');
+const { executeAlgebra } = require('./commands/algebra.js');
 
 // Register commands with correct function names
 client.commands.set('math', { execute: executeMath });
@@ -43,6 +48,11 @@ client.commands.set('statistics', { execute: executeStats });
 client.commands.set('convert', { execute: executeConvert });
 client.commands.set('solve', { execute: executeSolve });
 client.commands.set('help', { execute: executeHelp });
+client.commands.set('area', { execute: executeArea });
+client.commands.set('perimeter', { execute: executePerimeter });
+client.commands.set('volume', { execute: executeVolume });
+client.commands.set('trigonometry', { execute: executeTrigonometry });
+client.commands.set('algebra', { execute: executeAlgebra });
 
 // Handle slash commands
 client.on(Events.InteractionCreate, async interaction => {
