@@ -11,10 +11,10 @@
     "dev": "nodemon bot.js"
   },
   "dependencies": {
-    "discord.js": "^14.14.1",
-    "mathjs": "^11.9.1",
+    "cross-env": "^7.0.3",
+    "discord.js": "^14.25.1",
     "dotenv": "^16.3.1",
-    "cross-env": "^7.0.3"
+    "mathjs": "^11.9.1"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
