@@ -35,7 +35,7 @@ const { executeMath } = require('./commands/math.js');
 const { executeStats } = require('./commands/statistics.js');
 const { executeConvert } = require('./commands/convert.js');
 const { executeSolve } = require('./commands/solve.js');
-const { executeHelp } = require('./commands/help.js');
+const { executeHelp, handleSelectMenu, handleModalSubmit, handleHelpButton } = require('./commands/help.js'); // ADDED handleHelpButton
 const { executeArea } = require('./commands/area.js');
 const { executePerimeter } = require('./commands/perimeter.js');
 const { executeVolume } = require('./commands/volume.js');
@@ -54,32 +54,73 @@ client.commands.set('volume', { execute: executeVolume });
 client.commands.set('trigonometry', { execute: executeTrigonometry });
 client.commands.set('algebra', { execute: executeAlgebra });
 
-// Handle slash commands
+// SINGLE UNIFIED Interaction Handler
 client.on(Events.InteractionCreate, async interaction => {
-  if (!interaction.isChatInputCommand()) return;
-
-  const command = client.commands.get(interaction.commandName);
-
-  if (!command) {
-    console.error(`No command matching ${interaction.commandName} was found.`);
-    return;
-  }
-
   try {
-    await command.execute(interaction);
+    // Handle modal submissions FIRST
+    if (interaction.isModalSubmit()) {
+      // Handle modal submission from help command
+      await handleModalSubmit(interaction);
+      return;
+    }
+    
+    // Handle button interactions from help command
+    if (interaction.isButton()) {
+      // Check if this is a help command button
+      const helpButtonIds = [
+        'search_command', 'main_menu', 'categories_menu', 'view_all_commands',
+        'prev_page', 'next_page', 'search_command'
+      ];
+      
+      // Check if it starts with any help-related prefix
+      if (interaction.customId.startsWith('select_command_') || 
+          interaction.customId.startsWith('category_') ||
+          helpButtonIds.includes(interaction.customId)) {
+        await handleHelpButton(interaction);
+        return;
+      }
+      // Other button interactions are handled within each command's collector
+      return;
+    }
+    
+    // Handle slash commands
+    if (interaction.isChatInputCommand()) {
+      const command = client.commands.get(interaction.commandName);
+
+      if (!command) {
+        console.error(`No command matching ${interaction.commandName} was found.`);
+        return;
+      }
+
+      // Execute the command
+      await command.execute(interaction);
+    }
+    // Handle select menus (for help command search)
+    else if (interaction.isStringSelectMenu()) {
+      await handleSelectMenu(interaction);
+    }
   } catch (error) {
-    console.error(`Error executing ${interaction.commandName}:`, error);
+    console.error(`Error handling interaction ${interaction.type}:`, error);
     
-    // Use flags instead of ephemeral for new Discord.js version
-    const errorMessage = {
-      content: '❌ There was an error while executing this command!',
-      flags: 64 // EPHEMERAL
-    };
-    
-    if (interaction.deferred || interaction.replied) {
-      await interaction.followUp(errorMessage);
-    } else {
-      await interaction.reply(errorMessage);
+    // Only send error if interaction hasn't been replied to
+    if (!interaction.replied && !interaction.deferred) {
+      try {
+        await interaction.reply({
+          content: '❌ There was an error while processing your request!',
+          flags: 64 // Use flags instead of ephemeral
+        });
+      } catch (replyError) {
+        console.error('Failed to send error message:', replyError);
+      }
+    } else if (interaction.deferred && !interaction.replied) {
+      // If deferred but not replied, we can still edit
+      try {
+        await interaction.editReply({
+          content: '❌ There was an error while processing your request!'
+        });
+      } catch (editError) {
+        console.error('Failed to edit error message:', editError);
+      }
     }
   }
 });
@@ -95,4 +136,9 @@ if (!token) {
 client.login(token).catch(error => {
   console.error('❌ Failed to login:', error.message);
   console.error('💡 Check if your token is correct and the bot has proper permissions');
+});
+
+// Handle unhandled promise rejections
+process.on('unhandledRejection', error => {
+  console.error('Unhandled promise rejection:', error);
 });
