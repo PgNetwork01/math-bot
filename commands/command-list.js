@@ -398,7 +398,7 @@ const commands = [
             .setRequired(true)
         )
     ),
-    
+
   new SlashCommandBuilder()
     .setName('complex')
     .setDescription('Perform operations with complex numbers')
@@ -628,7 +628,81 @@ const commands = [
             .setDescription('Expression with complex numbers (use i for imaginary)')
             .setRequired(true)
         )
-    )
+    ),
+    // Add this to your existing command-list.js file
+new SlashCommandBuilder()
+  .setName('binomial')
+  .setDescription('Perform binomial expansion and calculations')
+  .addSubcommand(subcommand =>
+    subcommand
+      .setName('expand')
+      .setDescription('Expand binomial expression (a + b)^n')
+      .addStringOption(option =>
+        option.setName('expression')
+          .setDescription('Binomial expression (e.g., (x+2)^5, (2x-3)^4, (x+y)^3)')
+          .setRequired(true)
+      )
+      .addBooleanOption(option =>
+        option.setName('show_steps')
+          .setDescription('Show step-by-step expansion')
+          .setRequired(false)
+      )
+  )
+  .addSubcommand(subcommand =>
+    subcommand
+      .setName('coefficient')
+      .setDescription('Find specific coefficient in binomial expansion')
+      .addStringOption(option =>
+        option.setName('expression')
+          .setDescription('Binomial expression (e.g., (x+2)^5, (2x-3)^4)')
+          .setRequired(true)
+      )
+      .addIntegerOption(option =>
+        option.setName('term')
+          .setDescription('Term number (starting from 0) or power of variable')
+          .setRequired(true)
+      )
+  )
+  .addSubcommand(subcommand =>
+    subcommand
+      .setName('general_term')
+      .setDescription('Find general term formula for binomial expansion')
+      .addStringOption(option =>
+        option.setName('expression')
+          .setDescription('Binomial expression (e.g., (x+2)^n, (ax+by)^n)')
+          .setRequired(true)
+      )
+  )
+  .addSubcommand(subcommand =>
+    subcommand
+      .setName('middle_term')
+      .setDescription('Find middle term(s) of binomial expansion')
+      .addStringOption(option =>
+        option.setName('expression')
+          .setDescription('Binomial expression (e.g., (x+2)^n, (a+b)^n)')
+          .setRequired(true)
+      )
+  )
+  .addSubcommand(subcommand =>
+    subcommand
+      .setName('sum_coefficients')
+      .setDescription('Find sum of coefficients in binomial expansion')
+      .addStringOption(option =>
+        option.setName('expression')
+          .setDescription('Binomial expression (e.g., (x+2)^n, (2x-3)^n)')
+          .setRequired(true)
+      )
+  )
+  .addSubcommand(subcommand =>
+    subcommand
+      .setName('greatest_coefficient')
+      .setDescription('Find greatest coefficient in binomial expansion')
+      .addStringOption(option =>
+        option.setName('expression')
+          .setDescription('Binomial expression (e.g., (x+2)^n, (3x+5)^n)')
+          .setRequired(true)
+      )
+  )
 ].map(command => command.toJSON());
 
 module.exports = { commands };

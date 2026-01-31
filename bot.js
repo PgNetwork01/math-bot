@@ -42,6 +42,7 @@ const { executeVolume } = require('./commands/volume.js');
 const { executeTrigonometry } = require('./commands/trigonometry.js');
 const { executeAlgebra } = require('./commands/algebra.js');
 const { executeComplex } = require('./commands/complex.js');
+const { executeBinomial } = require('./commands/binomial.js');
 
 // Register commands with correct function names
 client.commands.set('math', { execute: executeMath });
@@ -55,6 +56,7 @@ client.commands.set('volume', { execute: executeVolume });
 client.commands.set('trigonometry', { execute: executeTrigonometry });
 client.commands.set('algebra', { execute: executeAlgebra });
 client.commands.set('complex', { execute: executeComplex });
+client.commands.set('binomial', { execute: executeBinomial });
 
 // SINGLE UNIFIED Interaction Handler
 client.on(Events.InteractionCreate, async interaction => {
