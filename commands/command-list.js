@@ -397,6 +397,237 @@ const commands = [
             .setDescription('y-coordinate of point 2')
             .setRequired(true)
         )
+    ),
+    
+  new SlashCommandBuilder()
+    .setName('complex')
+    .setDescription('Perform operations with complex numbers')
+    .addSubcommand(subcommand =>
+      subcommand
+        .setName('add')
+        .setDescription('Add two complex numbers')
+        .addNumberOption(option =>
+          option.setName('real1')
+            .setDescription('Real part of first number')
+            .setRequired(true)
+        )
+        .addNumberOption(option =>
+          option.setName('imag1')
+            .setDescription('Imaginary part of first number')
+            .setRequired(true)
+        )
+        .addNumberOption(option =>
+          option.setName('real2')
+            .setDescription('Real part of second number')
+            .setRequired(true)
+        )
+        .addNumberOption(option =>
+          option.setName('imag2')
+            .setDescription('Imaginary part of second number')
+            .setRequired(true)
+        )
+    )
+    .addSubcommand(subcommand =>
+      subcommand
+        .setName('subtract')
+        .setDescription('Subtract two complex numbers')
+        .addNumberOption(option =>
+          option.setName('real1')
+            .setDescription('Real part of first number')
+            .setRequired(true)
+        )
+        .addNumberOption(option =>
+          option.setName('imag1')
+            .setDescription('Imaginary part of first number')
+            .setRequired(true)
+        )
+        .addNumberOption(option =>
+          option.setName('real2')
+            .setDescription('Real part of second number')
+            .setRequired(true)
+        )
+        .addNumberOption(option =>
+          option.setName('imag2')
+            .setDescription('Imaginary part of second number')
+            .setRequired(true)
+        )
+    )
+    .addSubcommand(subcommand =>
+      subcommand
+        .setName('multiply')
+        .setDescription('Multiply two complex numbers')
+        .addNumberOption(option =>
+          option.setName('real1')
+            .setDescription('Real part of first number')
+            .setRequired(true)
+        )
+        .addNumberOption(option =>
+          option.setName('imag1')
+            .setDescription('Imaginary part of first number')
+            .setRequired(true)
+        )
+        .addNumberOption(option =>
+          option.setName('real2')
+            .setDescription('Real part of second number')
+            .setRequired(true)
+        )
+        .addNumberOption(option =>
+          option.setName('imag2')
+            .setDescription('Imaginary part of second number')
+            .setRequired(true)
+        )
+    )
+    .addSubcommand(subcommand =>
+      subcommand
+        .setName('divide')
+        .setDescription('Divide two complex numbers')
+        .addNumberOption(option =>
+          option.setName('real1')
+            .setDescription('Real part of first number')
+            .setRequired(true)
+        )
+        .addNumberOption(option =>
+          option.setName('imag1')
+            .setDescription('Imaginary part of first number')
+            .setRequired(true)
+        )
+        .addNumberOption(option =>
+          option.setName('real2')
+            .setDescription('Real part of second number')
+            .setRequired(true)
+        )
+        .addNumberOption(option =>
+          option.setName('imag2')
+            .setDescription('Imaginary part of second number')
+            .setRequired(true)
+        )
+    )
+    .addSubcommand(subcommand =>
+      subcommand
+        .setName('conjugate')
+        .setDescription('Find conjugate of a complex number')
+        .addNumberOption(option =>
+          option.setName('real')
+            .setDescription('Real part')
+            .setRequired(true)
+        )
+        .addNumberOption(option =>
+          option.setName('imag')
+            .setDescription('Imaginary part')
+            .setRequired(true)
+        )
+    )
+    .addSubcommand(subcommand =>
+      subcommand
+        .setName('magnitude')
+        .setDescription('Find magnitude/absolute value of complex number')
+        .addNumberOption(option =>
+          option.setName('real')
+            .setDescription('Real part')
+            .setRequired(true)
+        )
+        .addNumberOption(option =>
+          option.setName('imag')
+            .setDescription('Imaginary part')
+            .setRequired(true)
+        )
+    )
+    .addSubcommand(subcommand =>
+      subcommand
+        .setName('argument')
+        .setDescription('Find argument/phase of complex number (in radians)')
+        .addNumberOption(option =>
+          option.setName('real')
+            .setDescription('Real part')
+            .setRequired(true)
+        )
+        .addNumberOption(option =>
+          option.setName('imag')
+            .setDescription('Imaginary part')
+            .setRequired(true)
+        )
+    )
+    .addSubcommand(subcommand =>
+      subcommand
+        .setName('polar')
+        .setDescription('Convert complex number to polar form')
+        .addNumberOption(option =>
+          option.setName('real')
+            .setDescription('Real part')
+            .setRequired(true)
+        )
+        .addNumberOption(option =>
+          option.setName('imag')
+            .setDescription('Imaginary part')
+            .setRequired(true)
+        )
+    )
+    .addSubcommand(subcommand =>
+      subcommand
+        .setName('rectangular')
+        .setDescription('Convert polar form to rectangular form')
+        .addNumberOption(option =>
+          option.setName('magnitude')
+            .setDescription('Magnitude (r)')
+            .setRequired(true)
+        )
+        .addNumberOption(option =>
+          option.setName('angle')
+            .setDescription('Angle in radians (θ)')
+            .setRequired(true)
+        )
+    )
+    .addSubcommand(subcommand =>
+      subcommand
+        .setName('power')
+        .setDescription('Raise complex number to a power')
+        .addNumberOption(option =>
+          option.setName('real')
+            .setDescription('Real part')
+            .setRequired(true)
+        )
+        .addNumberOption(option =>
+          option.setName('imag')
+            .setDescription('Imaginary part')
+            .setRequired(true)
+        )
+        .addNumberOption(option =>
+          option.setName('power')
+            .setDescription('Power to raise to')
+            .setRequired(true)
+        )
+    )
+    .addSubcommand(subcommand =>
+      subcommand
+        .setName('roots')
+        .setDescription('Find nth roots of a complex number')
+        .addNumberOption(option =>
+          option.setName('real')
+            .setDescription('Real part')
+            .setRequired(true)
+        )
+        .addNumberOption(option =>
+          option.setName('imag')
+            .setDescription('Imaginary part')
+            .setRequired(true)
+        )
+        .addIntegerOption(option =>
+          option.setName('n')
+            .setDescription('Number of roots to find (n)')
+            .setRequired(true)
+            .setMinValue(1)
+            .setMaxValue(10)
+        )
+    )
+    .addSubcommand(subcommand =>
+      subcommand
+        .setName('evaluate')
+        .setDescription('Evaluate complex number expression')
+        .addStringOption(option =>
+          option.setName('expression')
+            .setDescription('Expression with complex numbers (use i for imaginary)')
+            .setRequired(true)
+        )
     )
 ].map(command => command.toJSON());
 

@@ -76,6 +76,14 @@ const allCommands = [
     examples: ['`/algebra quadratic a:1 b:-3 c:2`', '`/algebra distance x1:0 y1:0 x2:3 y2:4`'],
     category: 'Algebra',
     emoji: '➗'
+  },
+  {
+  name: 'complex',
+  description: 'Operations with complex numbers (addition, multiplication, polar form, etc.)',
+  usage: '/complex <operation> <parameters>',
+  examples: ['`/complex add real1:3 imag1:4 real2:1 imag2:2`', '`/complex polar real:3 imag:4`', '`/complex evaluate expression:"(3+4i)^2"`'],
+  category: 'Complex Numbers',
+  emoji: '🔢'
   }
 ];
 
