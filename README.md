@@ -1,6 +1,6 @@
 # Math Bot - Discord Mathematics Calculator
 
-A powerful Discord bot that performs comprehensive mathematical calculations, from basic arithmetic to advanced algebra, geometry, trigonometry, complex numbers, and binomial expansions.
+A Discord bot that performs mathematical calculations, from basic arithmetic to advanced algebra, geometry, trigonometry, complex numbers, and binomial expansions.
 
 ## Features
 
